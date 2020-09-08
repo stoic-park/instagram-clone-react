@@ -12,6 +12,7 @@ function App() {
   // 1. avatar, username, caption, imageUrl
   const [posts, setPosts] = useState([]);
 
+  // useEffect로 db데이터 받아오기
   useEffect(() => {
     db.collection("posts").onSnapshot((snapshot) => {
       setPosts(
@@ -36,7 +37,7 @@ function App() {
         ></img>
       </div>
 
-      <h1>hello bodys let's build instagram clone</h1>
+      <h1>hello lama</h1>
 
       {/* Posts */}
       {/* ex */}
