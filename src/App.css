@@ -7,10 +7,20 @@
   height: 100vh;
 }
 
-.app_headerImage {
-  background-color: white;
-  padding: 20px;
+.app_header {
   border-bottom: 1px solid lightgray;
+  background-color: white;
+}
+
+.app_headerImage {
+  /* background-color: white; */
+  padding: 20px;
+  /* border-bottom: 1px solid lightgray; */
   object-fit: contain;
   /* https://developer.mozilla.org/ko/docs/Web/CSS/object-fit */
+}
+
+.app_signup {
+  display: flex;
+  flex-direction: column;
 }
