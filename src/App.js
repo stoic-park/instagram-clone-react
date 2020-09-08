@@ -48,12 +48,12 @@ function App() {
       <h1>hello lama</h1>
 
       {/* Posts */}
-      {posts.map((post) => (
+      {posts.map(({ id, post }) => (
         <Post
-          key={post.id}
-          username={post.post.username}
-          caption={post.post.caption}
-          imageUrl={post.post.imageUrl}
+          key={id}
+          username={post.username}
+          caption={post.caption}
+          imageUrl={post.imageUrl}
           // post={post.post}
         />
       ))}

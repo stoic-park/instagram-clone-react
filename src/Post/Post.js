@@ -17,7 +17,7 @@ function Post(props) {
       </div>
       {/* header => avatar + username */}
 
-      <img className="post_image" src={props.imageUrl}></img>
+      <img className="post_image" src={props.imageUrl} alt=""></img>
       {/* image */}
 
       <h4 className="post_text">
