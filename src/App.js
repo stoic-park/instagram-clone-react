@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 // import logo from "./logo.svg";
 import "./App.css";
 import Post from "./Post/Post";
+import ImageUpload from "./ImageUpload/ImageUpload";
 
 // firebase
 import { db, auth } from "./firebase";
@@ -55,18 +56,20 @@ function App() {
   // 그래서 핸들링을 좀 해줘야한다
   // 두번째 인자에 배열을 넘겨주면 랜더링시 변경되지 않는다면 effect를 건너뛴다!
   useEffect(() => {
-    db.collection("posts").onSnapshot((snapshot) => {
-      // onSnapshot : every time a new post is added!
-      setPosts(
-        snapshot.docs.map((doc) => ({
-          id: doc.id,
-          post: doc.data(),
-          // caption: doc.data().caption,
-          // imageUrl: doc.data().imageUrl,
-          // username: doc.data().username,
-        }))
-      );
-    });
+    db.collection("posts")
+      .orderBy("timestamp", "desc")
+      .onSnapshot((snapshot) => {
+        // onSnapshot : every time a new post is added!
+        setPosts(
+          snapshot.docs.map((doc) => ({
+            id: doc.id,
+            post: doc.data(),
+            // caption: doc.data().caption,
+            // imageUrl: doc.data().imageUrl,
+            // username: doc.data().username,
+          }))
+        );
+      });
   }, []);
 
   // auth
@@ -74,7 +77,7 @@ function App() {
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
       if (authUser) {
         // user has logged in
-        console.log(authUser);
+        // console.log(authUser);
         setUser(authUser);
 
         // if (authUser.displayName) {
@@ -87,6 +90,7 @@ function App() {
         // }
       } else {
         // user has logged out
+        console.log("no user");
         setUser(null);
       }
     });
@@ -204,19 +208,18 @@ function App() {
           src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png"
           alt=""
         ></img>
-      </div>
 
-      {/* user의 유무에 따라서 버튼 달리하기 */}
-      {user ? (
-        // 1줄로 로그아웃..ㄷㄷ
-        <Button onClick={() => auth.signOut()}>Log Out</Button>
-      ) : (
-        <div className="app_loginContainer">
-          <Button onClick={() => setOpenSignIn(true)}>Sign In</Button>
-          <Button onClick={() => setOpen(true)}>Sign Up</Button>
-        </div>
-      )}
-      {/* <Button onClick={() => setOpen(true)}>LogIn</Button> */}
+        {/* user의 유무에 따라서 버튼 달리하기 */}
+        {user ? (
+          // 1줄로 로그아웃..ㄷㄷ
+          <Button onClick={() => auth.signOut()}>Log Out</Button>
+        ) : (
+          <div className="app_loginContainer">
+            <Button onClick={() => setOpenSignIn(true)}>Sign In</Button>
+            <Button onClick={() => setOpen(true)}>Sign Up</Button>
+          </div>
+        )}
+      </div>
 
       <h1>hello lama</h1>
 
@@ -230,6 +233,14 @@ function App() {
           // post={post.post}
         />
       ))}
+
+      {/* ImageUpload */}
+      {/* user?.displayName? */}
+      {user?.displayName ? (
+        <ImageUpload username={user.displayName} />
+      ) : (
+        <h3>글을 쓰려면 로그인을 하세요</h3>
+      )}
     </div>
   );
 }
