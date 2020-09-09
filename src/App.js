@@ -12,6 +12,9 @@ import firebase from "firebase";
 import { Modal, Button, Input } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
+//
+import InstagramEmbed from "react-instagram-embed";
+
 function getModalStyle() {
   const top = 50;
   const left = 50;
@@ -221,18 +224,37 @@ function App() {
         )}
       </div>
 
-      <h1>hello lama</h1>
+      <div className="app_posts">
+        <div className="app_postsLeft">
+          {/* Posts */}
+          {posts.map(({ id, post }) => (
+            <Post
+              key={id}
+              username={post.username}
+              caption={post.caption}
+              imageUrl={post.imageUrl}
+              // post={post.post}
+            />
+          ))}
+        </div>
+        {/* 이런게 있냐..? */}
+        <div className="app_postsRight">
+          <InstagramEmbed
+            url="https://www.instagram.com/p/CE3gu4ng7LL/?utm_source=ig_web_copy_link"
+            maxWidth={320}
+            hideCaption={false}
+            containerTagName="div"
+            protocol=""
+            injectScript
+            onLoading={() => {}}
+            onSuccess={() => {}}
+            onAfterRender={() => {}}
+            onFailure={() => {}}
+          />
+        </div>
+      </div>
 
-      {/* Posts */}
-      {posts.map(({ id, post }) => (
-        <Post
-          key={id}
-          username={post.username}
-          caption={post.caption}
-          imageUrl={post.imageUrl}
-          // post={post.post}
-        />
-      ))}
+      {/* <h1>hello lama</h1> */}
 
       {/* ImageUpload */}
       {/* user?.displayName? */}

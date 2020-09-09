@@ -21,6 +21,19 @@
   object-fit: contain;
 }
 
+.app_posts {
+  padding: 20px;
+  display: flex;
+  /* flex-direction: row; */
+  justify-content: center;
+}
+
+.app_postsLeft {
+}
+.app_postsRight {
+  margin-left: 20px;
+}
+
 .app_signup {
   display: flex;
   flex-direction: column;
