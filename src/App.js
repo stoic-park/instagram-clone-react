@@ -82,15 +82,6 @@ function App() {
         // user has logged in
         // console.log(authUser);
         setUser(authUser);
-
-        // if (authUser.displayName) {
-        //   // dont update username
-        // } else {
-        //   // if we just created someone..!
-        //   return authUser.updateProfile({
-        //     displayName: username,
-        //   });
-        // }
       } else {
         // user has logged out
         console.log("no user");
@@ -230,6 +221,8 @@ function App() {
           {posts.map(({ id, post }) => (
             <Post
               key={id}
+              postId={id}
+              user={user}
               username={post.username}
               caption={post.caption}
               imageUrl={post.imageUrl}
