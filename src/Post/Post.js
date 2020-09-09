@@ -77,24 +77,27 @@ function Post(props) {
         ))}
       </div>
 
-      {/* 댓글 달기 */}
-      <form className="post_commentBox">
-        <Input
-          className="post_input"
-          type="text"
-          placeholder="Add a Comment!"
-          value={comment}
-          onChange={(e) => setComment(e.target.value)}
-        />
-        <Button
-          className="post_button"
-          disabled={!comment}
-          type="submit"
-          onClick={handlePostComment}
-        >
-          Post
-        </Button>
-      </form>
+      {/* 로그인한 상태에서만 댓글 달수 있게 */}
+      {props.user && (
+        // {/* 댓글 달기 */}
+        <form className="post_commentBox">
+          <Input
+            className="post_input"
+            type="text"
+            placeholder="Add a Comment!"
+            value={comment}
+            onChange={(e) => setComment(e.target.value)}
+          />
+          <Button
+            className="post_button"
+            disabled={!comment}
+            type="submit"
+            onClick={handlePostComment}
+          >
+            Post
+          </Button>
+        </form>
+      )}
     </div>
   );
 }

@@ -8,6 +8,10 @@
 }
 
 .app_header {
+  /* header 고정 */
+  position: sticky;
+  top: 0;
+  z-index: 1;
   border-bottom: 1px solid lightgray;
   background-color: white;
   object-fit: contain;
