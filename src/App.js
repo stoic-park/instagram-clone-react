@@ -254,7 +254,9 @@ function App() {
       {user?.displayName ? (
         <ImageUpload username={user.displayName} />
       ) : (
-        <h3>글을 쓰려면 로그인을 하세요</h3>
+        <center className="infor">
+          <strong>회원가입 후 글을 올려보세요!</strong>
+        </center>
       )}
     </div>
   );
